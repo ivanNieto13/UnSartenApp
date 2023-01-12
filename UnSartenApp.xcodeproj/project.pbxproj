@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B13853F296CEE5C002DAA3B /* UnSartenAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B13853E296CEE5C002DAA3B /* UnSartenAppApp.swift */; };
+		7B13853F296CEE5C002DAA3B /* UnSartenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B13853E296CEE5C002DAA3B /* UnSartenApp.swift */; };
 		7B138541296CEE5C002DAA3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B138540296CEE5C002DAA3B /* ContentView.swift */; };
 		7B138543296CEE5D002DAA3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B138542296CEE5D002DAA3B /* Assets.xcassets */; };
 		7B138546296CEE5E002DAA3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B138545296CEE5E002DAA3B /* Preview Assets.xcassets */; };
+		7B13854E296CEF14002DAA3B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B13854D296CEF14002DAA3B /* Login.swift */; };
+		7B138550296CF57F002DAA3B /* ConfirmCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B13854F296CF57F002DAA3B /* ConfirmCode.swift */; };
+		7B138552296D1C1C002DAA3B /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B138551296D1C1C002DAA3B /* RegisterUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7B13853B296CEE5C002DAA3B /* UnSartenApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnSartenApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B13853E296CEE5C002DAA3B /* UnSartenAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnSartenAppApp.swift; sourceTree = "<group>"; };
+		7B13853E296CEE5C002DAA3B /* UnSartenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnSartenApp.swift; sourceTree = "<group>"; };
 		7B138540296CEE5C002DAA3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7B138542296CEE5D002DAA3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B138545296CEE5E002DAA3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7B13854D296CEF14002DAA3B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		7B13854F296CF57F002DAA3B /* ConfirmCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCode.swift; sourceTree = "<group>"; };
+		7B138551296D1C1C002DAA3B /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +57,8 @@
 		7B13853D296CEE5C002DAA3B /* UnSartenApp */ = {
 			isa = PBXGroup;
 			children = (
-				7B13853E296CEE5C002DAA3B /* UnSartenAppApp.swift */,
+				7B13854C296CEEFF002DAA3B /* view */,
+				7B13853E296CEE5C002DAA3B /* UnSartenApp.swift */,
 				7B138540296CEE5C002DAA3B /* ContentView.swift */,
 				7B138542296CEE5D002DAA3B /* Assets.xcassets */,
 				7B138544296CEE5E002DAA3B /* Preview Content */,
@@ -65,6 +72,16 @@
 				7B138545296CEE5E002DAA3B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7B13854C296CEEFF002DAA3B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7B13854D296CEF14002DAA3B /* Login.swift */,
+				7B13854F296CF57F002DAA3B /* ConfirmCode.swift */,
+				7B138551296D1C1C002DAA3B /* RegisterUser.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B138552296D1C1C002DAA3B /* RegisterUser.swift in Sources */,
+				7B13854E296CEF14002DAA3B /* Login.swift in Sources */,
+				7B138550296CF57F002DAA3B /* ConfirmCode.swift in Sources */,
 				7B138541296CEE5C002DAA3B /* ContentView.swift in Sources */,
-				7B13853F296CEE5C002DAA3B /* UnSartenAppApp.swift in Sources */,
+				7B13853F296CEE5C002DAA3B /* UnSartenApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
