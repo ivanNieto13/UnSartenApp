@@ -9,6 +9,8 @@ final class VerifyCodeViewModel: ObservableObject {
     @Published var verifyCode = VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: false), error: nil))
     @Published var error: URLError?
     @Published var isLoading = false
+    @Published var isCodeValid = false
+    @Published var isCodeInvalid = false
 
     private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
     private var cancellable = Set<AnyCancellable>()
@@ -39,6 +41,13 @@ final class VerifyCodeViewModel: ObservableObject {
                 }, receiveValue: { verifyCode in
                     self.verifyCode = verifyCode
                     self.isLoading = false
+                    if verifyCode.data.verifyCode.isValid {
+                        self.isCodeValid = true
+                        self.isCodeInvalid = false
+                    } else {
+                        self.isCodeValid = false
+                        self.isCodeInvalid = true
+                    }
                 })
                 .store(in: &cancellable)
     }
