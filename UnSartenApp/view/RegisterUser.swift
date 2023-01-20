@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterUserContentView: View {
+    @StateObject private var vm = VerifyNumberViewModel()
     @State var showingLoginScreen = false
     @State var showingAlert = false
     @State var showingSendButtonActive = false
@@ -17,11 +18,13 @@ struct RegisterUserContentView: View {
     @State var validEmail = false
 
     @Binding var path: NavigationPath
-    @Binding var phoneNumber: String
-    @Binding var code: String
-    @Binding var name: String
-    @Binding var lastname: String
+    @Binding var userData: SaveUserData
+
+    @Binding var verifyNumber: VerifyNumber
+    @Binding var verifyCode: VerifyCode
     @Binding var email: String
+    @Binding var name: String
+    @Binding var lastName: String
 
     @Environment(\.presentationMode) var presentation
     @FocusState private var keyboardFocused: Bool
@@ -66,6 +69,7 @@ struct RegisterUserContentView: View {
                                 of: usernamePattern,
                                 options: .regularExpression
                         )
+                        name = value
 
                         validName = (result != nil)
                         showingSendButtonActive = validEmail && validName && validLastname
@@ -77,7 +81,7 @@ struct RegisterUserContentView: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-            TextField("Doe Ford", text: $lastname)
+            TextField("Doe Ford", text: $lastName)
                     .autocapitalization(.words)
                     .padding()
                     .frame(width: 300, height: 50)
@@ -92,7 +96,7 @@ struct RegisterUserContentView: View {
                             RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color("TertiaryColor"), lineWidth: 2)
                     )
-                    .onChange(of: lastname, perform: { value in
+                    .onChange(of: lastName, perform: { value in
                         let lastnamePattern = #"^[a-zA-Z-]+ ?.*"#
                         let result = value.range(
                                 of: lastnamePattern,
@@ -129,18 +133,13 @@ struct RegisterUserContentView: View {
                                 of: emailPattern,
                                 options: .regularExpression
                         )
-
+                        email = value
                         validEmail = (result != nil)
                         showingSendButtonActive = validEmail && validName && validLastname
                     })
 
             Button(action: {
                 showingAlert = true
-                print("code \(code)")
-                print("phoneNumber \(phoneNumber)")
-                print("name \(name)")
-                print("lastname \(lastname)")
-                print("email \(email)")
             }) {
                 switch showingSendButtonActive {
                 case true:
@@ -177,6 +176,9 @@ struct RegisterUserContentView: View {
             Spacer()
 
         }
+                .onAppear {
+                    print("RegisterUser -> ", userData.data.saveUserData)
+                }
                 .padding()
                 .navigationBarBackButtonHidden(true)
     }
@@ -184,9 +186,3 @@ struct RegisterUserContentView: View {
 
 }
 
-struct RegisterUserContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterUserContentView(path: .constant(NavigationPath()), phoneNumber: .constant(""), code: .constant(""),
-                name: .constant(""), lastname: .constant(""), email: .constant(""))
-    }
-}
