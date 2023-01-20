@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginContentView: View {
-    @StateObject private var vm = VerifyNumberViewModel()
+    @StateObject private var verifyNumberViewModel = VerifyNumberViewModel()
     @State var confirmButton = false
     @State var userData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
 
@@ -31,7 +31,7 @@ struct LoginContentView: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            if (vm.isLoading) {
+            if (verifyNumberViewModel.isLoading) {
                 ZStack {
                     ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: Color("IconColor")))
@@ -132,9 +132,9 @@ struct LoginContentView: View {
                             Button("Editar", role: .cancel) {
                             }
                             Button("Confirmar", role: .destructive) {
-                                vm.confirmCode = false
+                                verifyNumberViewModel.confirmCode = false
                                 DispatchQueue.main.async {
-                                    vm.verifyPhone(phoneNumber: "+52\(phoneNumber)")
+                                    verifyNumberViewModel.verifyPhone(phoneNumber: "+52\(phoneNumber)")
                                 }
                             }
                         } message: {
@@ -152,13 +152,13 @@ struct LoginContentView: View {
             }
 
         }
-                .onChange(of: vm.confirmCode, perform: { navigate in
+                .onChange(of: verifyNumberViewModel.confirmCode, perform: { navigate in
                     if navigate {
-                        verifyNumber = vm.verifyNumber
+                        verifyNumber = verifyNumberViewModel.verifyNumber
                         path.append("ConfirmCode")
                     } else {
-                        if vm.verifyNumber.data.verifyNumber.phoneNumber == "+52\(phoneNumber)" {
-                            vm.confirmCode = true
+                        if verifyNumberViewModel.verifyNumber.data.verifyNumber.phoneNumber == "+52\(phoneNumber)" {
+                            verifyNumberViewModel.confirmCode = true
                         }
                     }
                 })
