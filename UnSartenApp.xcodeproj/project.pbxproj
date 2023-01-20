@@ -59,6 +59,7 @@
 			children = (
 				7B13853D296CEE5C002DAA3B /* UnSartenApp */,
 				7B13853C296CEE5C002DAA3B /* Products */,
+				7BF40D88297A130300D648AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +101,13 @@
 				7B138551296D1C1C002DAA3B /* RegisterUser.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		7BF40D88297A130300D648AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7F0D1091F6F5DB400A5ECCD1 /* model */ = {
