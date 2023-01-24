@@ -10,7 +10,6 @@ import SwiftUI
 struct RegisterUserContentView: View {
     @StateObject private var vm = VerifyNumberViewModel()
     @State var showingLoginScreen = false
-    @State var showingAlert = false
     @State var showingSendButtonActive = false
 
     @State var validName = false
@@ -139,7 +138,7 @@ struct RegisterUserContentView: View {
                     })
 
             Button(action: {
-                showingAlert = true
+                print("datos", name, lastName, email, verifyNumber.data.verifyNumber.phoneNumber)
             }) {
                 switch showingSendButtonActive {
                 case true:
@@ -173,12 +172,10 @@ struct RegisterUserContentView: View {
                     .padding(.top)
                     .disabled(!showingSendButtonActive)
 
+
             Spacer()
 
         }
-                .onAppear {
-                    print("RegisterUser -> ", userData.data.saveUserData)
-                }
                 .padding()
                 .navigationBarBackButtonHidden(true)
     }

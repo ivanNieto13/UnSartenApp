@@ -10,6 +10,8 @@ final class VerifyNumberViewModel: ObservableObject {
     @Published var error: URLError?
     @Published var isLoading = false
 
+    @Published var verifyCode: VerifyCode?
+
     @Published var confirmCode = false
 
     private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"

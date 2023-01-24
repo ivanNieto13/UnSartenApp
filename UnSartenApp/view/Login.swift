@@ -9,6 +9,9 @@ import SwiftUI
 
 struct LoginContentView: View {
     @StateObject private var verifyNumberViewModel = VerifyNumberViewModel()
+
+    @State private var verifyCodeViewModel = VerifyCodeViewModel()
+
     @State var confirmButton = false
     @State var userData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
 
@@ -143,10 +146,13 @@ struct LoginContentView: View {
                         }
                         .navigationDestination(for: String.self) { view in
                             if view == "ConfirmCode" {
-                                ConfirmCodeContentView(path: $path, code: $code, verifyNumber: $verifyNumber, verifyCode: $verifyCode, confirmCode: $confirmCode)
+                                ConfirmCodeContentView(verifyCodeViewModel_: $verifyCodeViewModel, path: $path, code: $code, verifyNumber: $verifyNumber, verifyCode: $verifyCode, confirmCode: $confirmCode)
                             }
                             if view == "RegisterUser" {
                                 RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, name: $name, lastName: $lastname)
+                            }
+                            if view == "Home" {
+                                HomeContentView(path: $path)
                             }
                         }
             }
@@ -155,6 +161,9 @@ struct LoginContentView: View {
                 .onChange(of: verifyNumberViewModel.confirmCode, perform: { navigate in
                     if navigate {
                         verifyNumber = verifyNumberViewModel.verifyNumber
+                        if verifyNumber.data.verifyNumber.userID != "" {
+                            verifyCodeViewModel.userId = verifyNumber.data.verifyNumber.userID ?? ""
+                        }
                         path.append("ConfirmCode")
                     } else {
                         if verifyNumberViewModel.verifyNumber.data.verifyNumber.phoneNumber == "+52\(phoneNumber)" {

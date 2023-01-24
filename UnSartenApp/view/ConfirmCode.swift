@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ConfirmCodeContentView: View {
     @StateObject private var verifyCodeViewModel = VerifyCodeViewModel()
-    @StateObject private var saveUserModel = SaveUserDataViewModel()
 
     @State var showingLoginScreen = false
     @State var showingSendButtonActive = false
+
+    @Binding var verifyCodeViewModel_: VerifyCodeViewModel
 
     @Binding var path: NavigationPath
     @Binding var code: String
@@ -152,6 +153,10 @@ struct ConfirmCodeContentView: View {
             }
                     .onChange(of: verifyCodeViewModel.isCodeValid, perform: { isCodeValid in
                         if isCodeValid {
+                            if verifyCodeViewModel_.userId != "" {
+                                path.append("Home")
+                                return
+                            }
                             verifyCode = verifyCodeViewModel.verifyCode
                             path.append("RegisterUser")
                         }
@@ -165,7 +170,9 @@ struct ConfirmCodeContentView: View {
 
 struct ConfirmCodeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmCodeContentView(path: .constant(NavigationPath()),
+        ConfirmCodeContentView(
+                verifyCodeViewModel_: .constant(VerifyCodeViewModel()),
+                path: .constant(NavigationPath()),
                 code: .constant(""),
                 verifyNumber: .constant(VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: false, userID: nil), error: nil))),
                 verifyCode: .constant(VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: true), error: nil))),

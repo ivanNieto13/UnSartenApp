@@ -1,24 +1,20 @@
 //
-// Created by Ivan Nieto on 17/01/23.
+// Created by Ivan Nieto on 23/01/23.
 //
 
 import Foundation
 import Combine
 
-final class VerifyCodeViewModel: ObservableObject {
-    @Published var verifyCode = VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: false), error: nil))
+final class GetUserByIdViewModel: ObservableObject {
+    @Published var getUserData = GetUserByID(data: GetUserByIDDataClass(getUserByID: GetUserByIDClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
     @Published var error: URLError?
     @Published var isLoading = false
-    @Published var isCodeValid = false
-    @Published var isCodeInvalid = false
-
-    var userId: String = ""
 
     private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
     private var cancellable = Set<AnyCancellable>()
 
-    func verifyCode(code: String) {
-        let verifyCodeUrlString = "\(APIUrl)login/verifyCode"
+    func getUserData(userId: String) {
+        let verifyCodeUrlString = "\(APIUrl)login/getUserById"
         guard let url = URL(string: verifyCodeUrlString) else {
             return
         }
@@ -26,7 +22,7 @@ final class VerifyCodeViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let body = ["code": code]
+        let body = ["userId": userId]
         request.httpBody = try! JSONSerialization.data(withJSONObject: body, options: [])
 
         return URLSession
@@ -37,19 +33,12 @@ final class VerifyCodeViewModel: ObservableObject {
                     let httpResponse = response as? HTTPURLResponse
                     return data
                 })
-                .decode(type: VerifyCode.self, decoder: JSONDecoder())
+                .decode(type: GetUserByID.self, decoder: JSONDecoder())
                 .sink(receiveCompletion: { completion in
                     print(completion)
-                }, receiveValue: { verifyCode in
-                    self.verifyCode = verifyCode
+                }, receiveValue: { userData in
+                    self.getUserData = userData
                     self.isLoading = false
-                    if verifyCode.data.verifyCode.isValid {
-                        self.isCodeValid = true
-                        self.isCodeInvalid = false
-                    } else {
-                        self.isCodeValid = false
-                        self.isCodeInvalid = true
-                    }
                 })
                 .store(in: &cancellable)
     }
