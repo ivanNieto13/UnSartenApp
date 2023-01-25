@@ -6,14 +6,16 @@ import Foundation
 import Combine
 
 final class SaveUserDataViewModel: ObservableObject {
-    @Published var saveUserData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
+    @Published var saveUserData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: "", phoneNumber: ""), error: nil))
     @Published var error: URLError?
     @Published var isLoading = false
+
+    @Published var home = false
 
     private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
     private var cancellable = Set<AnyCancellable>()
 
-    func verifyCode(code: String) {
+    func saveUser(email: String, firstName: String, lastName: String, phoneNumber: String) {
         let verifyCodeUrlString = "\(APIUrl)login/saveUserData"
         guard let url = URL(string: verifyCodeUrlString) else {
             return
@@ -22,7 +24,7 @@ final class SaveUserDataViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let body = ["code": code]
+        let body = ["email": email, "firstName": firstName, "lastName": lastName, "phoneNumber": phoneNumber]
         request.httpBody = try! JSONSerialization.data(withJSONObject: body, options: [])
 
         return URLSession
@@ -39,6 +41,11 @@ final class SaveUserDataViewModel: ObservableObject {
                 }, receiveValue: { saveUserData in
                     self.saveUserData = saveUserData
                     self.isLoading = false
+                    if saveUserData.data.error != nil {
+                        print("Error")
+                    } else {
+                        self.home = true
+                    }
                 })
                 .store(in: &cancellable)
     }

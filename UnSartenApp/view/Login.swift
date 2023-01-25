@@ -13,7 +13,7 @@ struct LoginContentView: View {
     @State private var verifyCodeViewModel = VerifyCodeViewModel()
 
     @State var confirmButton = false
-    @State var userData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
+    @State var userData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: "", phoneNumber: ""), error: nil))
 
     @State var confirmCode = false
 
@@ -149,7 +149,7 @@ struct LoginContentView: View {
                                 ConfirmCodeContentView(verifyCodeViewModel_: $verifyCodeViewModel, path: $path, code: $code, verifyNumber: $verifyNumber, verifyCode: $verifyCode, confirmCode: $confirmCode)
                             }
                             if view == "RegisterUser" {
-                                RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, name: $name, lastName: $lastname)
+                                RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, firstName: $name, lastName: $lastname)
                             }
                             if view == "Home" {
                                 HomeContentView(path: $path)

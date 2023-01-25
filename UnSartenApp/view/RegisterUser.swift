@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegisterUserContentView: View {
-    @StateObject private var vm = VerifyNumberViewModel()
+    @StateObject private var saveUserDataViewModel = SaveUserDataViewModel()
     @State var showingLoginScreen = false
     @State var showingSendButtonActive = false
 
@@ -22,7 +22,7 @@ struct RegisterUserContentView: View {
     @Binding var verifyNumber: VerifyNumber
     @Binding var verifyCode: VerifyCode
     @Binding var email: String
-    @Binding var name: String
+    @Binding var firstName: String
     @Binding var lastName: String
 
     @Environment(\.presentationMode) var presentation
@@ -41,7 +41,7 @@ struct RegisterUserContentView: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-            TextField("John H.", text: $name)
+            TextField("John H.", text: $firstName)
                     .autocapitalization(.words)
                     .padding()
                     .frame(width: 300, height: 50)
@@ -62,13 +62,13 @@ struct RegisterUserContentView: View {
                             keyboardFocused = true
                         }
                     }
-                    .onChange(of: name, perform: { value in
+                    .onChange(of: firstName, perform: { value in
                         let usernamePattern = #"^[a-zA-Z-]+ ?.*"#
                         let result = value.range(
                                 of: usernamePattern,
                                 options: .regularExpression
                         )
-                        name = value
+                        firstName = value
 
                         validName = (result != nil)
                         showingSendButtonActive = validEmail && validName && validLastname
@@ -138,7 +138,9 @@ struct RegisterUserContentView: View {
                     })
 
             Button(action: {
-                print("datos", name, lastName, email, verifyNumber.data.verifyNumber.phoneNumber)
+                DispatchQueue.main.async {
+                    saveUserDataViewModel.saveUser(email: email, firstName: firstName, lastName: lastName, phoneNumber: verifyNumber.data.verifyNumber.phoneNumber)
+                }
             }) {
                 switch showingSendButtonActive {
                 case true:
@@ -176,6 +178,15 @@ struct RegisterUserContentView: View {
             Spacer()
 
         }
+                .onChange(of: saveUserDataViewModel.home, perform: { navigate in
+                    if navigate {
+                        // Navigate to home
+                        path.append("Home")
+                    } else {
+                        // Navigate to verify number
+                        print("dont navigate to home")
+                    }
+                })
                 .padding()
                 .navigationBarBackButtonHidden(true)
     }
