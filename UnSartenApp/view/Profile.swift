@@ -15,6 +15,18 @@ struct UserName : View {
         return Text(name)
             .font(.largeTitle)
             .padding(.bottom, 20)
+            .foregroundColor(Color("IconColor"))
+    }
+}
+
+struct UserEmail : View {
+    @Binding var email : String
+    
+    var body: some View {
+        return Text(email)
+            .font(.title2)
+            .padding(.bottom, 20)
+            .foregroundColor(Color("IconColor"))
     }
 }
 
@@ -29,16 +41,18 @@ struct Profile: View {
             
             UserName(name: $userDataService.userFirstName.toUnwrapped(defaultValue: "John Doe"))
             
+            UserEmail(email: $userDataService.userEmail.toUnwrapped(defaultValue: "user@email.com"))
+            
             Spacer()
             
             Button(action: {
                 // logout action
             }) {
-                Text("Logout")
+                Text("Cerrar sesion")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.red)
+                    .background(Color("PrimaryColor"))
                     .cornerRadius(10)
             }
         }
