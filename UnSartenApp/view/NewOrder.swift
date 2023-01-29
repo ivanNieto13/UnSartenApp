@@ -6,11 +6,7 @@ import Foundation
 import SwiftUI
 
 struct NewOrder: View {
-    @Binding var orderName: String
-    @Binding var orderBudget: Float
-    @Binding var orderPersons: Int
-    @Binding var orderIngredients: String
-    @Binding var orderTags: [Tag]
+    @ObservedObject var newOrderService: NewOrderService
     
     @FocusState private var keyboardFocused: Bool
     
@@ -26,7 +22,7 @@ struct NewOrder: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-                TextField("Chilaquiles verdes", text: $orderName)
+                TextField("Chilaquiles verdes", text: $newOrderService.orderName.toUnwrapped(defaultValue: ""))
                     .autocapitalization(.words)
                     .padding()
                     .frame(width: 300, height: 50)
@@ -47,8 +43,8 @@ struct NewOrder: View {
                             keyboardFocused = true
                         }
                     }
-                    .onChange(of: orderName, perform: { value in
-                        orderName = value
+                    .onChange(of: newOrderService.orderName, perform: { value in
+                        newOrderService.orderName = value
                     })
             }
             Group {
@@ -56,7 +52,7 @@ struct NewOrder: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-                TextField("220.00", value: $orderBudget, format: .currency(code: .localizedName(of: .utf8)))
+                TextField("220.00", value: $newOrderService.orderBudget, format: .currency(code: .localizedName(of: .utf8)))
                     .padding()
                     .frame(width: 300, height: 50)
                     .background()
@@ -70,14 +66,8 @@ struct NewOrder: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("TertiaryColor"), lineWidth: 2)
                     )
-                    .focused($keyboardFocused)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            keyboardFocused = true
-                        }
-                    }
-                    .onChange(of: orderBudget, perform: { value in
-                        orderBudget = value
+                    .onChange(of: newOrderService.orderBudget, perform: { value in
+                        newOrderService.orderBudget = value
                     })
             }
             Group {
@@ -85,7 +75,7 @@ struct NewOrder: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-                TextField("4", value: $orderPersons, format: .number)
+                TextField("4", value: $newOrderService.orderPersons, format: .number)
                     .autocapitalization(.words)
                     .padding()
                     .frame(width: 300, height: 50)
@@ -100,14 +90,8 @@ struct NewOrder: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("TertiaryColor"), lineWidth: 2)
                     )
-                    .focused($keyboardFocused)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            keyboardFocused = true
-                        }
-                    }
-                    .onChange(of: orderPersons, perform: { value in
-                        orderPersons = value
+                    .onChange(of: newOrderService.orderPersons, perform: { value in
+                        newOrderService.orderPersons = value
                     })
             }
             
@@ -116,7 +100,7 @@ struct NewOrder: View {
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
-                TextField("Introduce algunos posibles ingredientes", text: $orderIngredients)
+                TextField("Introduce algunos posibles ingredientes", text: $newOrderService.orderIngredients.toUnwrapped(defaultValue: ""))
                     .padding()
                     .frame(width: 300, height: 50)
                     .background()
@@ -129,14 +113,8 @@ struct NewOrder: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("TertiaryColor"), lineWidth: 2)
                     )
-                    .focused($keyboardFocused)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            keyboardFocused = true
-                        }
-                    }
-                    .onChange(of: orderIngredients, perform: { value in
-                        orderIngredients = value
+                    .onChange(of: newOrderService.orderIngredients, perform: { value in
+                        newOrderService.orderIngredients = value
                     })
             }
             Group {
@@ -183,8 +161,8 @@ struct NewOrder: View {
                     .cornerRadius(10)
                     .foregroundColor(.white)
                     .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color("PositiveButtonColor"), lineWidth: 5)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("PositiveButtonColor"), lineWidth: 5)
                     )
                     
                     
@@ -198,9 +176,14 @@ struct NewOrder: View {
     
 }
 
+extension Binding {
+    func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
+        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+    }
+}
 
 struct NewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        NewOrder(orderName: .constant(""), orderBudget: .constant(.zero), orderPersons: .constant(4), orderIngredients: .constant(""), orderTags: .constant([Tag.init(tag: "")]))
+        NewOrder(newOrderService: .init())
     }
 }
