@@ -39,7 +39,7 @@ struct TabBar: View {
             .tag(2)
             
             NavigationView {
-                Text("Perfil")
+                Profile(userDataService: UserDataService())
             }
             .tabItem {
                 Image(systemName: "person")
