@@ -21,7 +21,7 @@ struct TabBar: View {
             .tag(0)
             
             NavigationView {
-                Text("Ordenes")
+                FetchOrders(fetchOrdersService: FetchOrdersService())
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
