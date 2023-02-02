@@ -12,42 +12,45 @@ struct TabBar: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
-                Text("Chats")
+                ChatList(chatsService: ChatsService())
             }
-            .tabItem {
-                Image(systemName: "message")
-                Text("Chats")
-            }
-            .tag(0)
-            
+                    .tabItem {
+                        Image(systemName: "message")
+                        Text("Chats")
+                    }
+                    .tag(0)
+
             NavigationView {
                 FetchOrders(fetchOrdersService: FetchOrdersService())
             }
-            .tabItem {
-                Image(systemName: "magnifyingglass")
-                Text("Ordenes")
-            }
-            .tag(1)
-            
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Ordenes")
+                    }
+                    .tag(1)
+
             NavigationView {
                 NewOrder(newOrderService: NewOrderService())
             }
-            .tabItem {
-                Image(systemName: "plus.square")
-                Text("Nueva orden")
-            }
-            .tag(2)
-            
+                    .tabItem {
+                        Image(systemName: "plus.square")
+                        Text("Nueva orden")
+                    }
+                    .tag(2)
+
             NavigationView {
                 Profile(userDataService: UserDataService())
             }
-            .tabItem {
-                Image(systemName: "person")
-                Text("Perfil")
-            }
-            .tag(3)
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Perfil")
+                    }
+                    .tag(3)
         }
-        .accentColor(.blue)
+                .accentColor(.blue)
+                .onAppear() {
+                    print("TabBar - onAppear")
+                }
     }
 }
 

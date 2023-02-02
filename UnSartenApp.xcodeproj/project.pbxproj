@@ -22,6 +22,10 @@
 		7B5600AF2986EF7C008E0334 /* FetchOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600AE2986EF7C008E0334 /* FetchOrders.swift */; };
 		7B5600B12986EFD0008E0334 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600B02986EFD0008E0334 /* OrderItem.swift */; };
 		7B5600B32986F4C6008E0334 /* FetchOrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600B22986F4C6008E0334 /* FetchOrdersService.swift */; };
+		7B5600B529870389008E0334 /* ChatListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600B429870389008E0334 /* ChatListItem.swift */; };
+		7B5600B72987061B008E0334 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600B62987061B008E0334 /* ChatList.swift */; };
+		7B5600BA29872636008E0334 /* ChatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600B929872636008E0334 /* ChatsService.swift */; };
+		7B5600BC298738A4008E0334 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5600BB298738A4008E0334 /* ChatRoom.swift */; };
 		7F0D119C86F8FD16306C7923 /* SaveUserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1A75AA10DC44896B6C0D /* SaveUserDataViewModel.swift */; };
 		7F0D15358B09731C8170E35F /* VerifyCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1F7D41D85EB7824CE7C6 /* VerifyCodeViewModel.swift */; };
 		7F0D15F2987810D76EC9F525 /* SaveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1384D75818D3F8698AF6 /* SaveUserData.swift */; };
@@ -53,6 +57,10 @@
 		7B5600AE2986EF7C008E0334 /* FetchOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOrders.swift; sourceTree = "<group>"; };
 		7B5600B02986EFD0008E0334 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7B5600B22986F4C6008E0334 /* FetchOrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOrdersService.swift; sourceTree = "<group>"; };
+		7B5600B429870389008E0334 /* ChatListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItem.swift; sourceTree = "<group>"; };
+		7B5600B62987061B008E0334 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
+		7B5600B929872636008E0334 /* ChatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsService.swift; sourceTree = "<group>"; };
+		7B5600BB298738A4008E0334 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		7F0D12F375F6DCA4541C29D2 /* NewOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrder.swift; sourceTree = "<group>"; };
 		7F0D1362CAF0A7B791F0E7B6 /* VerifyNumberViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNumberViewModel.swift; sourceTree = "<group>"; };
 		7F0D1384D75818D3F8698AF6 /* SaveUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveUserData.swift; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 				7B5600AA2986E911008E0334 /* Profile.swift */,
 				7B5600AE2986EF7C008E0334 /* FetchOrders.swift */,
 				7B5600B02986EFD0008E0334 /* OrderItem.swift */,
+				7B5600B429870389008E0334 /* ChatListItem.swift */,
+				7B5600B62987061B008E0334 /* ChatList.swift */,
+				7B5600BB298738A4008E0334 /* ChatRoom.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -140,6 +151,7 @@
 				7B5600A82986DAE2008E0334 /* NewOrderService.swift */,
 				7B5600AC2986EABA008E0334 /* UserDataService.swift */,
 				7B5600B22986F4C6008E0334 /* FetchOrdersService.swift */,
+				7B5600B929872636008E0334 /* ChatsService.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -267,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B138552296D1C1C002DAA3B /* RegisterUser.swift in Sources */,
+				7B5600BA29872636008E0334 /* ChatsService.swift in Sources */,
 				7B13854E296CEF14002DAA3B /* Login.swift in Sources */,
 				7B5600A6298627E7008E0334 /* TabBar.swift in Sources */,
 				7B138550296CF57F002DAA3B /* ConfirmCode.swift in Sources */,
@@ -278,9 +291,11 @@
 				7B5600AF2986EF7C008E0334 /* FetchOrders.swift in Sources */,
 				7B5600A429861704008E0334 /* Tag.swift in Sources */,
 				7F0D1EC19AB9288BFA1FCB9B /* VerifyNumber.swift in Sources */,
+				7B5600B529870389008E0334 /* ChatListItem.swift in Sources */,
 				7F0D1A82152F36F9BC7E8E2D /* VerifyCode.swift in Sources */,
 				7B5600AB2986E911008E0334 /* Profile.swift in Sources */,
 				7F0D16F8F4C192E50749AFB9 /* JSONNull.swift in Sources */,
+				7B5600B72987061B008E0334 /* ChatList.swift in Sources */,
 				7F0D119C86F8FD16306C7923 /* SaveUserDataViewModel.swift in Sources */,
 				7F0D15358B09731C8170E35F /* VerifyCodeViewModel.swift in Sources */,
 				7F0D1757A1B8CAF4D15BBF84 /* VerifyNumberViewModel.swift in Sources */,
@@ -290,6 +305,7 @@
 				7F0D1C7658EC1453F0291A78 /* GetUserByIdViewModel.swift in Sources */,
 				7F0D18AF6CE200292234C0C4 /* Home.swift in Sources */,
 				7F0D18C14EFB5A8D22B35863 /* NewOrder.swift in Sources */,
+				7B5600BC298738A4008E0334 /* ChatRoom.swift in Sources */,
 				7B5600A92986DAE2008E0334 /* NewOrderService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

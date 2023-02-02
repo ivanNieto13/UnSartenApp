@@ -27,6 +27,7 @@ struct HomeContentView: View {
             .navigationBarBackButtonHidden(true)
         } else {
             TabBar()
+                .navigationBarBackButtonHidden(true)
         }
     }
 }
