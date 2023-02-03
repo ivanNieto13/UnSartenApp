@@ -34,6 +34,11 @@ struct Profile: View {
     @ObservedObject var userDataService: UserDataService
     var body: some View {
         VStack {
+            Text("Perfil")
+                .font(.title)
+                .bold()
+                .foregroundColor(Color("IconColor"))
+                .padding(.bottom)
             Image(systemName: "person.fill")
                 .resizable()
                 .frame(width: 150, height: 150)

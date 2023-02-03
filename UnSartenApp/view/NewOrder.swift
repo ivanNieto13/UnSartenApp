@@ -4,11 +4,15 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct NewOrder: View {
     @ObservedObject var newOrderService: NewOrderService
     
     @FocusState private var keyboardFocused: Bool
+    
+    let budgetLimit = 5
+
     
     var body: some View {
         VStack {
@@ -57,10 +61,9 @@ struct NewOrder: View {
                     .frame(width: 300, height: 50)
                     .background()
                     .cornerRadius(10)
-                    .textFieldStyle(.automatic)
                     .border(.red, width: CGFloat(0))
-                    .keyboardType(.asciiCapable)
-                    .lineLimit(5)
+                    .keyboardType(.decimalPad)
+                    .lineLimit(1)
                     .foregroundColor(Color("TertiaryColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -83,8 +86,8 @@ struct NewOrder: View {
                     .cornerRadius(10)
                     .textFieldStyle(.automatic)
                     .border(.red, width: CGFloat(0))
-                    .keyboardType(.asciiCapable)
-                    .lineLimit(2)
+                    .keyboardType(.numberPad)
+                    .lineLimit(1)
                     .foregroundColor(Color("TertiaryColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -140,26 +143,14 @@ struct NewOrder: View {
             
             Group {
                 HStack {
-                    Button("Regresar") {
-                        print("Edit button was tapped")
-                    }
-                    .font(.title3)
-                    .padding()
-                    .foregroundColor(Color("PositiveButtonColor"))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("PositiveButtonColor"), lineWidth: 2)
-                    )
-                    
                     Button("Crear solicitud") {
                         print("Edit button was tapped")
                     }
-                    .fontWeight(.bold)
-                    .font(.title3)
-                    .padding()
-                    .background(Color("PositiveButtonColor"))
-                    .cornerRadius(10)
+                    .font(.headline)
                     .foregroundColor(.white)
+                    .padding()
+                    .background(Color("PrimaryColor"))
+                    .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("PositiveButtonColor"), lineWidth: 5)
