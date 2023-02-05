@@ -9,8 +9,6 @@ import Combine
 struct NewOrder: View {
     @ObservedObject var newOrderService: NewOrderService
     
-    @FocusState private var keyboardFocused: Bool
-    
     let budgetLimit = 5
 
     
@@ -41,12 +39,6 @@ struct NewOrder: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("TertiaryColor"), lineWidth: 2)
                     )
-                    .focused($keyboardFocused)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            keyboardFocused = true
-                        }
-                    }
                     .onChange(of: newOrderService.orderName, perform: { value in
                         newOrderService.orderName = value
                     })
