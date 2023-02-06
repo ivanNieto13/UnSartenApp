@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TabBar: View {
     @State var selectedTab = 0
+    let coreDM: CoreDataManager
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
@@ -39,7 +41,7 @@ struct TabBar: View {
                     .tag(2)
 
             NavigationView {
-                Profile(userDataService: UserDataService())
+                Profile(userDataService: UserDataService(), coreDM: coreDM)
             }
                     .tabItem {
                         Image(systemName: "person")
@@ -56,6 +58,6 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        TabBar(coreDM: CoreDataManager())
     }
 }

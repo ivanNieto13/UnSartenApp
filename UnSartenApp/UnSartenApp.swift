@@ -9,19 +9,9 @@ import SwiftUI
 
 @main
 struct UnSartenApp: App {
-    @StateObject var showNoInternetAlert = NoInternet()
-
-    init() {
-        showNoInternetAlert.checkConnectivity()
-    }
-
     var body: some Scene {
         WindowGroup {
-            if showNoInternetAlert.showNoInternetAlert {
-                NoInternetContentView(showNoConnectionAlert: $showNoInternetAlert.showNoInternetAlert)
-            } else {
-                LoginContentView()
-            }
+            RootView(coreDM: CoreDataManager())
         }
     }
 }

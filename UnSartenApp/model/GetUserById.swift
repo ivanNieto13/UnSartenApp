@@ -27,10 +27,10 @@ struct GetUserByIDDataClass: Codable {
 
 // MARK: - GetUserByIDClass
 struct GetUserByIDClass: Codable {
-    let userID, email, firstName, lastName: String
+    let userId, email, firstName, lastName, phoneNumber: String
 
     enum CodingKeys: String, CodingKey {
-        case userID = "userId"
-        case email, firstName, lastName
+        case userId = "userId"
+        case email, firstName, lastName, phoneNumber
     }
 }

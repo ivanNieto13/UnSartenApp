@@ -6,6 +6,7 @@ import SwiftUI
 
 struct HomeContentView: View {
     @Binding var path: NavigationPath
+    let coreDM: CoreDataManager
     
     var body: some View {
         if (/*getHomeDataViewModel.isLoading*/ !true) {
@@ -26,7 +27,7 @@ struct HomeContentView: View {
             
             .navigationBarBackButtonHidden(true)
         } else {
-            TabBar()
+            TabBar(coreDM: coreDM)
                 .navigationBarBackButtonHidden(true)
         }
     }
@@ -34,6 +35,6 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        TabBar(coreDM: CoreDataManager())
     }
 }

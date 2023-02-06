@@ -32,6 +32,7 @@ struct UserEmail : View {
 
 struct Profile: View {
     @ObservedObject var userDataService: UserDataService
+    let coreDM: CoreDataManager
     var body: some View {
         VStack {
             Text("Perfil")
@@ -51,7 +52,7 @@ struct Profile: View {
             Spacer()
             
             Button(action: {
-                // logout action
+                coreDM.deleteUserData()
             }) {
                 Text("Cerrar sesion")
                     .font(.headline)
@@ -67,6 +68,7 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(userDataService: UserDataService())
+        Profile(userDataService: UserDataService(),
+                coreDM: CoreDataManager())
     }
 }

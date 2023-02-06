@@ -6,7 +6,7 @@ import Foundation
 import Combine
 
 final class VerifyNumberViewModel: ObservableObject {
-    @Published var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: false, userID: ""), error: nil))
+    @Published var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: true, userID: "", firstName: "", lastName: "", email: ""), error: nil))
     @Published var error: URLError?
     @Published var isLoading = false
 

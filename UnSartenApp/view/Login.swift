@@ -9,8 +9,9 @@ import SwiftUI
 
 struct LoginContentView: View {
     @StateObject private var verifyNumberViewModel = VerifyNumberViewModel()
-
+    let coreDM: CoreDataManager
     @State private var verifyCodeViewModel = VerifyCodeViewModel()
+    @State private var getUserByIdViewModel = GetUserByIdViewModel()
 
     @State var confirmButton = false
     @State var userData = SaveUserData(data: SUDataClass(saveUserData: SaveUserSUDataClass(userID: "", email: "", firstName: "", lastName: "", phoneNumber: ""), error: nil))
@@ -22,7 +23,7 @@ struct LoginContentView: View {
     @State var name = ""
     @State var lastname = ""
     @State var email = ""
-    @State var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: false, userID: nil), error: nil))
+    @State var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: true, userID: "", firstName: "", lastName: "", email: nil), error: nil))
     @State var verifyCode = VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: false), error: nil))
 
     @State var showingLoginScreen = false
@@ -152,7 +153,7 @@ struct LoginContentView: View {
                                 RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, firstName: $name, lastName: $lastname)
                             }
                             if view == "Home" {
-                                HomeContentView(path: $path)
+                                HomeContentView(path: $path, coreDM: coreDM)
                             }
                         }
             }
@@ -162,6 +163,7 @@ struct LoginContentView: View {
                     if navigate {
                         verifyNumber = verifyNumberViewModel.verifyNumber
                         if verifyNumber.data.verifyNumber.userID != "" {
+                            saveUserData(verifyNumber: verifyNumber.data.verifyNumber)
                             verifyCodeViewModel.userId = verifyNumber.data.verifyNumber.userID ?? ""
                         }
                         path.append("ConfirmCode")
@@ -174,12 +176,28 @@ struct LoginContentView: View {
     }
 
     private func setDefaultValueVerifyNumber() -> VerifyNumber {
-        VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: phoneNumber, isVerified: false, userID: nil), error: nil))
+        VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: phoneNumber, isVerified: false, userID: nil, firstName: nil, lastName: nil, email: nil), error: nil))
+    }
+
+    private func saveUserData(verifyNumber: VerifyNumberClass) {
+        let userId = verifyNumber.userID
+        let email = verifyNumber.email
+        let firstName = verifyNumber.firstName
+        let lastName = verifyNumber.lastName
+        let phoneNumber = verifyNumber.phoneNumber
+        coreDM.saveUserData(
+            userId: userId!,
+            phoneNumber: phoneNumber,
+            firstName: firstName!,
+            lastName: lastName!,
+            email: email!
+        )
+        
     }
 }
 
 struct LoginContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginContentView()
+        LoginContentView(coreDM: CoreDataManager())
     }
 }

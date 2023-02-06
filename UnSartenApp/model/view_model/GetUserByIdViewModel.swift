@@ -6,7 +6,7 @@ import Foundation
 import Combine
 
 final class GetUserByIdViewModel: ObservableObject {
-    @Published var getUserData = GetUserByID(data: GetUserByIDDataClass(getUserByID: GetUserByIDClass(userID: "", email: "", firstName: "", lastName: ""), error: nil))
+    @Published var getUserData = GetUserByID(data: GetUserByIDDataClass(getUserByID: GetUserByIDClass(userId: "", email: "", firstName: "", lastName: "", phoneNumber: ""), error: nil))
     @Published var error: URLError?
     @Published var isLoading = false
 
