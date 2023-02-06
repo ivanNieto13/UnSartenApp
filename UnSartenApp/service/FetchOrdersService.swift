@@ -14,5 +14,5 @@ class Order {
 }
 
 class FetchOrdersService: ObservableObject {
-    @Published var orders: [Order]?
+    @Published var orders: [GetOrder] = []
 }
