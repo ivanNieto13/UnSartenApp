@@ -232,6 +232,7 @@ struct NewOrder: View {
                 .onChange(of: saveOrderDataVM.viewOrders, perform: { viewOrders in
                     if viewOrders {
                         resetInputs()
+                        saveOrderDataVM.viewOrders = false
                         //presentationMode.wrappedValue.dismiss(
                     }
                 })

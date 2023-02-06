@@ -36,32 +36,38 @@ struct Profile: View {
     var body: some View {
         VStack {
             Text("Perfil")
-                .font(.title)
-                .bold()
-                .foregroundColor(Color("IconColor"))
-                .padding(.bottom)
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(Color("IconColor"))
+                    .padding(.bottom)
             Image(systemName: "person.fill")
-                .resizable()
-                .frame(width: 150, height: 150)
-                .clipShape(Circle())
-            
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .clipShape(Circle())
+
             UserName(name: $userDataService.userFirstName.toUnwrapped(defaultValue: "John Doe"))
-            
+
             UserEmail(email: $userDataService.userEmail.toUnwrapped(defaultValue: "user@email.com"))
-            
+
             Spacer()
-            
+
             Button(action: {
                 coreDM.deleteUserData()
             }) {
                 Text("Cerrar sesion")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color("PrimaryColor"))
-                    .cornerRadius(10)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(10)
             }
         }
+                .onAppear() {
+                    let data = coreDM.getUserData()
+                    userDataService.userFirstName = data?.firstName ?? ""
+                    userDataService.userLastName = data?.lastName ?? ""
+                    userDataService.userEmail = data?.email ?? ""
+                }
         .padding()
     }
 }

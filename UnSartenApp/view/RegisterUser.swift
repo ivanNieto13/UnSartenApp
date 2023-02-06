@@ -28,6 +28,8 @@ struct RegisterUserContentView: View {
     @Environment(\.presentationMode) var presentation
     @FocusState private var keyboardFocused: Bool
 
+    let coreDM: CoreDataManager
+
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             Text("Ingresa tus datos")
@@ -180,6 +182,8 @@ struct RegisterUserContentView: View {
         }
                 .onChange(of: saveUserDataViewModel.home, perform: { navigate in
                     if navigate {
+                        let user = saveUserDataViewModel.saveUserData.data.saveUserData
+                        coreDM.saveUserData(userId: user.userID, phoneNumber: user.phoneNumber, firstName: user.firstName, lastName: user.lastName, email: user.email)
                         // Navigate to home
                         path.append("Home")
                     } else {

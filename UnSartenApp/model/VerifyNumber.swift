@@ -29,14 +29,14 @@ struct DataClass: Codable {
 struct VerifyNumberClass: Codable {
     let phoneNumber: String
     let isVerified: Bool
-    let userID: String?
+    let userId: String?
     let firstName: String?
     let lastName: String?
     let email: String?
 
     enum CodingKeys: String, CodingKey {
         case phoneNumber, isVerified, firstName, lastName, email
-        case userID = "userId"
+        case userId = "userId"
     }
 
 

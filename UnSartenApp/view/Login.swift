@@ -23,7 +23,7 @@ struct LoginContentView: View {
     @State var name = ""
     @State var lastname = ""
     @State var email = ""
-    @State var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: true, userID: "", firstName: "", lastName: "", email: nil), error: nil))
+    @State var verifyNumber = VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: true, userId: "", firstName: "", lastName: "", email: nil), error: nil))
     @State var verifyCode = VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: false), error: nil))
 
     @State var showingLoginScreen = false
@@ -150,7 +150,7 @@ struct LoginContentView: View {
                                 ConfirmCodeContentView(verifyCodeViewModel_: $verifyCodeViewModel, path: $path, code: $code, verifyNumber: $verifyNumber, verifyCode: $verifyCode, confirmCode: $confirmCode)
                             }
                             if view == "RegisterUser" {
-                                RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, firstName: $name, lastName: $lastname)
+                                RegisterUserContentView(path: $path, userData: $userData, verifyNumber: $verifyNumber, verifyCode: $verifyCode, email: $email, firstName: $name, lastName: $lastname, coreDM: coreDM)
                             }
                             if view == "Home" {
                                 HomeContentView(path: $path, coreDM: coreDM)
@@ -162,9 +162,11 @@ struct LoginContentView: View {
                 .onChange(of: verifyNumberViewModel.confirmCode, perform: { navigate in
                     if navigate {
                         verifyNumber = verifyNumberViewModel.verifyNumber
-                        if verifyNumber.data.verifyNumber.userID != "" {
-                            saveUserData(verifyNumber: verifyNumber.data.verifyNumber)
-                            verifyCodeViewModel.userId = verifyNumber.data.verifyNumber.userID ?? ""
+                        if verifyNumber.data.verifyNumber.userId != "" {
+                            verifyCodeViewModel.userId = verifyNumber.data.verifyNumber.userId ?? ""
+                            if verifyCodeViewModel.userId != "" {
+                                saveUserData(verifyNumber: verifyNumber.data.verifyNumber)
+                            }
                         }
                         path.append("ConfirmCode")
                     } else {
@@ -176,11 +178,11 @@ struct LoginContentView: View {
     }
 
     private func setDefaultValueVerifyNumber() -> VerifyNumber {
-        VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: phoneNumber, isVerified: false, userID: nil, firstName: nil, lastName: nil, email: nil), error: nil))
+        VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: phoneNumber, isVerified: false, userId: nil, firstName: nil, lastName: nil, email: nil), error: nil))
     }
 
     private func saveUserData(verifyNumber: VerifyNumberClass) {
-        let userId = verifyNumber.userID
+        let userId = verifyNumber.userId
         let email = verifyNumber.email
         let firstName = verifyNumber.firstName
         let lastName = verifyNumber.lastName
