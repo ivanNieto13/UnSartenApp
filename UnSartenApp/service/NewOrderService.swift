@@ -11,6 +11,6 @@ class NewOrderService: ObservableObject {
     @Published var orderBudget: Float?
     @Published var orderPersons: Int?
     @Published var orderIngredients: String?
-    @Published var orderTags: [Tag]?
+    @Published var orderCreated = false
     
 }

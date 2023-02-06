@@ -174,7 +174,7 @@ struct ConfirmCodeContentView_Previews: PreviewProvider {
                 verifyCodeViewModel_: .constant(VerifyCodeViewModel()),
                 path: .constant(NavigationPath()),
                 code: .constant(""),
-                verifyNumber: .constant(VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: true, userID: "", firstName: "", lastName: nil, email: ""), error: nil))),
+                verifyNumber: .constant(VerifyNumber(data: DataClass(verifyNumber: VerifyNumberClass(phoneNumber: "", isVerified: .random(), userID: "", firstName: "", lastName: nil, email: ""), error: nil))),
                 verifyCode: .constant(VerifyCode(data: VCDataClass(verifyCode: VerifyCodeClass(code: "", isValid: true), error: nil))),
                 confirmCode: .constant(false))
     }

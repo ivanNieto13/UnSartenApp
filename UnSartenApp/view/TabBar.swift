@@ -32,7 +32,7 @@ struct TabBar: View {
                     .tag(1)
 
             NavigationView {
-                NewOrder(newOrderService: NewOrderService())
+                NewOrder(newOrderService: NewOrderService(), coreDM: coreDM)
             }
                     .tabItem {
                         Image(systemName: "plus.square")
