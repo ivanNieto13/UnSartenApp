@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import PhotosUI
 
 struct NewOrder: View {
     @ObservedObject var newOrderService: NewOrderService
@@ -16,6 +17,9 @@ struct NewOrder: View {
     @State var validBudget = false
     @State var validPersons = false
     @State var validIngredients = false
+
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
 
     let coreDM: CoreDataManager
     let budgetLimit = 5
@@ -148,17 +152,36 @@ struct NewOrder: View {
                         .foregroundColor(Color("IconColor"))
                         .padding(.bottom)
 
-                Button {
-                    print("Edit button was tapped")
-                } label: {
-                    Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                            .foregroundColor(Color("MainColor"))
-                            .frame(width: 100, height: 100)
-                            .background(Color("PrimaryColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                HStack {
+                    PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()) {
+                        Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                                .foregroundColor(Color("MainColor"))
+                                .frame(width: 100, height: 100)
+                                .background(Color("PrimaryColor"))
+                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                    }
+                            .onChange(of: selectedItem) { newItem in
+                                Task {
+                                    // Retrieve selected asset in the form of Data
+                                    if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                        selectedImageData = data
+                                    }
+                                }
+                            }
+
+                    if let selectedImageData,
+                       let uiImage = UIImage(data: selectedImageData) {
+                        Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 150)
+                    }
                 }
             }
 
@@ -205,11 +228,14 @@ struct NewOrder: View {
                         })
                         .alert("Crear orden", isPresented: $showingAlert) {
                             Button("Editar", role: .cancel) {
-                                print("Editar \(newOrderService.orderName ?? "")")
                             }
                             Button("Crear", role: .destructive) {
                                 let data = coreDM.getUserData()
                                 let author = (data?.firstName ?? "") + " " + (data?.lastName ?? "")
+                                var imageString = ""
+                                if selectedImageData != nil {
+                                    imageString = "data:image/jpeg"+";base64," + (selectedImageData?.base64EncodedString() ?? "")
+                                }
                                 DispatchQueue.main.async {
                                     saveOrderDataVM.saveOrder(
                                             userId: data?.userId ?? "",
@@ -217,7 +243,8 @@ struct NewOrder: View {
                                             budget: newOrderService.orderBudget ?? 0.0,
                                             persons: Int(newOrderService.orderPersons ?? 1),
                                             author: author,
-                                            optionalIngredients: newOrderService.orderIngredients ?? ""
+                                            optionalIngredients: newOrderService.orderIngredients ?? "",
+                                            orderPicture: imageString
                                     )
                                 }
                             }

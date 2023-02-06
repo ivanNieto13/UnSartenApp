@@ -45,7 +45,7 @@ struct OrderView: View {
 
             if order.orderPicture != nil && order.orderPicture != "" {
                 Group {
-                    AsyncImage(url: URL(string: order.orderPicture!)) { image in
+                    AsyncImage(url: URL(string: "http://mac-mini-de-ivan.local:3000/"+order.orderPicture!)) { image in
                         image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)

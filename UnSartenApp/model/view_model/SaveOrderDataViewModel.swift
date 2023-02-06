@@ -21,7 +21,7 @@ final class SaveOrderDataViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
 
     func saveOrder(
-            userId: String, orderName: String, budget: Float, persons: Int, author: String, optionalIngredients: String) {
+            userId: String, orderName: String, budget: Float, persons: Int, author: String, optionalIngredients: String, orderPicture: String) {
         let verifyNumberUrlString = "\(APIUrl)orders/saveOrderData"
         guard let url = URL(string: verifyNumberUrlString) else {
             return
@@ -37,6 +37,7 @@ final class SaveOrderDataViewModel: ObservableObject {
             "persons": persons,
             "author": author,
             "optionalIngredients": optionalIngredients,
+            "orderPicture": orderPicture
         ] as [String: Any]
         request.httpBody = try! JSONSerialization.data(withJSONObject: body, options: [])
 
