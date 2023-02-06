@@ -35,10 +35,11 @@ struct GODataClass: Codable, Hashable {
 }
 
 // MARK: - GetOrder
-struct GetOrder: Codable, Hashable {
+struct GetOrder: Codable, Hashable, Identifiable {
+    let id = UUID()
     let userId, orderName: String
     let budget, persons: Int
-    let orderPicture: JSONNull?
+    let orderPicture: String?
     let orderStatus, author, date, optionalIngredients: String
 
     enum CodingKeys: String, CodingKey {

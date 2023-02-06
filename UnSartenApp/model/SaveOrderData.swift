@@ -33,7 +33,7 @@ struct SaveOrderDataClass: Codable {
     let userId, orderName: String
     let budget: Double
     let persons: Int
-    let orderPicture: JSONNull?
+    let orderPicture: String?
     let orderStatus, author, date, optionalIngredients: String
 
     enum CodingKeys: String, CodingKey {
