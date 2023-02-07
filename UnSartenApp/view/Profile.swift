@@ -51,7 +51,7 @@ struct Profile: View {
 
             Spacer()
 
-            Button(action: {
+            /*Button(action: {
                 coreDM.deleteUserData()
             }) {
                 Text("Cerrar sesion")
@@ -60,7 +60,7 @@ struct Profile: View {
                         .padding()
                         .background(Color("PrimaryColor"))
                         .cornerRadius(10)
-            }
+            }*/
         }
                 .onAppear() {
                     let data = coreDM.getUserData()
