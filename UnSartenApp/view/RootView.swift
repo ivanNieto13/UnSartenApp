@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
     @State var isActive : Bool = false
     @StateObject var showNoInternetAlert = NoInternet()
+    @StateObject var showInvalidURLServiceAlert = NoURLService()
 
     let coreDM: CoreDataManager
     
@@ -17,6 +18,8 @@ struct RootView: View {
         Group {
             if showNoInternetAlert.showNoInternetAlert {
                 NoInternetContentView(showNoConnectionAlert: $showNoInternetAlert.showNoInternetAlert)
+            } else if showInvalidURLServiceAlert.showInvalidURLServiceAlert {
+                NoURLServiceContentView(showInvalidURLServiceAlert: $showInvalidURLServiceAlert.showInvalidURLServiceAlert)
             } else {
                 if getUserData() {
                     TabBar(coreDM: coreDM)
@@ -26,6 +29,7 @@ struct RootView: View {
             }
         }.onAppear() {
             showNoInternetAlert.checkConnectivity()
+            showInvalidURLServiceAlert.checkURLService()
         }
     }
     

@@ -10,7 +10,7 @@ final class GetUserByIdViewModel: ObservableObject {
     @Published var error: URLError?
     @Published var isLoading = false
 
-    private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
+    private let APIUrl = "api/"
     private var cancellable = Set<AnyCancellable>()
 
     func getUserData(userId: String) {

@@ -12,7 +12,7 @@ final class SaveUserDataViewModel: ObservableObject {
 
     @Published var home = false
 
-    private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
+    private let APIUrl = URLService().URL_SERVICES + "api/"
     private var cancellable = Set<AnyCancellable>()
 
     func saveUser(email: String, firstName: String, lastName: String, phoneNumber: String) {

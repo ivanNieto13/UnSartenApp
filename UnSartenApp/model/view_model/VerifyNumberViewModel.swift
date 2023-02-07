@@ -14,7 +14,7 @@ final class VerifyNumberViewModel: ObservableObject {
 
     @Published var confirmCode = false
 
-    private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
+    private let APIUrl = URLService().URL_SERVICES + "api/"
     private var cancellable = Set<AnyCancellable>()
 
     func verifyPhone(phoneNumber: String) {

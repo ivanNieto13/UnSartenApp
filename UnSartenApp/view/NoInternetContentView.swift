@@ -7,7 +7,6 @@ import Network
 
 final class NoInternet: ObservableObject {
     @Published var showNoInternetAlert = false
-    @Published var showMobileDataUsage = false
 
     func checkConnectivity() {
         let monitor = NWPathMonitor()

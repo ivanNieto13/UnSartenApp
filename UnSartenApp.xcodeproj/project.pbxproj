@@ -32,6 +32,7 @@
 		7B84BAF329909ACA006BFC39 /* SaveOrderDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84BAF229909ACA006BFC39 /* SaveOrderDataViewModel.swift */; };
 		7BB717002990693900631E87 /* UnSartenApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BB716FE2990693900631E87 /* UnSartenApp.xcdatamodeld */; };
 		7F0D119C86F8FD16306C7923 /* SaveUserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1A75AA10DC44896B6C0D /* SaveUserDataViewModel.swift */; };
+		7F0D14DFECB6DFB68E7EEE56 /* NoURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1BE315DABD5500084649 /* NoURLService.swift */; };
 		7F0D15358B09731C8170E35F /* VerifyCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1F7D41D85EB7824CE7C6 /* VerifyCodeViewModel.swift */; };
 		7F0D15F2987810D76EC9F525 /* SaveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1384D75818D3F8698AF6 /* SaveUserData.swift */; };
 		7F0D16F8F4C192E50749AFB9 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D157367977EC1E7972D4B /* JSONNull.swift */; };
@@ -39,6 +40,7 @@
 		7F0D1893F85F62677C33C264 /* GetUserById.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1C10A533F9150D332E8F /* GetUserById.swift */; };
 		7F0D18AF6CE200292234C0C4 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1D95EE85C3FB4846D1FD /* Home.swift */; };
 		7F0D18C14EFB5A8D22B35863 /* NewOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D12F375F6DCA4541C29D2 /* NewOrder.swift */; };
+		7F0D19C6415651FC384A6A4A /* URLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1D28F1A5A1F7573474E4 /* URLService.swift */; };
 		7F0D1A82152F36F9BC7E8E2D /* VerifyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1FB35749E7F84F29C7F0 /* VerifyCode.swift */; };
 		7F0D1BA17849DED9DAB45C2F /* GetOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D1093BF1C898075AC4BDE /* GetOrders.swift */; };
 		7F0D1C7658EC1453F0291A78 /* GetUserByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D19A58E0C2771FCEB66E2 /* GetUserByIdViewModel.swift */; };
@@ -84,7 +86,9 @@
 		7F0D16D350A0E502BE4F9325 /* VerifyNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNumber.swift; sourceTree = "<group>"; };
 		7F0D19A58E0C2771FCEB66E2 /* GetUserByIdViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByIdViewModel.swift; sourceTree = "<group>"; };
 		7F0D1A75AA10DC44896B6C0D /* SaveUserDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveUserDataViewModel.swift; sourceTree = "<group>"; };
+		7F0D1BE315DABD5500084649 /* NoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoURLService.swift; sourceTree = "<group>"; };
 		7F0D1C10A533F9150D332E8F /* GetUserById.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserById.swift; sourceTree = "<group>"; };
+		7F0D1D28F1A5A1F7573474E4 /* URLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLService.swift; sourceTree = "<group>"; };
 		7F0D1D95EE85C3FB4846D1FD /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7F0D1F529D4D6DBABB7ED6CA /* URLError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLError.swift; sourceTree = "<group>"; };
 		7F0D1F7D41D85EB7824CE7C6 /* VerifyCodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewModel.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				7F0D1091F6F5DB400A5ECCD1 /* model */,
 				7F0D1C6DEA8DC23F8187CEF1 /* controller */,
 				7BB716FE2990693900631E87 /* UnSartenApp.xcdatamodeld */,
+				7F0D1D28F1A5A1F7573474E4 /* URLService.swift */,
 			);
 			path = UnSartenApp;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				7B5600BB298738A4008E0334 /* ChatRoom.swift */,
 				7F0D118457D102843ADFFBFF /* NoInternetContentView.swift */,
 				7B6B01302990601B004D6A57 /* RootView.swift */,
+				7F0D1BE315DABD5500084649 /* NoURLService.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 				7F0D1DC5982BD8C785E78DDB /* NoInternetContentView.swift in Sources */,
 				7F0D1BA17849DED9DAB45C2F /* GetOrders.swift in Sources */,
 				7F0D1CB10F652B614A28EFAC /* GetOrdersViewModel.swift in Sources */,
+				7F0D19C6415651FC384A6A4A /* URLService.swift in Sources */,
+				7F0D14DFECB6DFB68E7EEE56 /* NoURLService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

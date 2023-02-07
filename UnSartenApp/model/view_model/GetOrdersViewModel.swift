@@ -10,7 +10,7 @@ final class GetOrdersViewModel: ObservableObject {
     @Published var error: URLError?
     @Published var isLoading = false
 
-    private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
+    private let APIUrl = URLService().URL_SERVICES + "api/"
     private var cancellable = Set<AnyCancellable>()
 
     func getOrders() {

@@ -17,7 +17,7 @@ final class SaveOrderDataViewModel: ObservableObject {
     @Published var viewOrders: Bool = false
 
 
-    private let APIUrl = "http://Mac-mini-de-Ivan.local:3000/api/"
+    private let APIUrl = URLService().URL_SERVICES + "api/"
     private var cancellable = Set<AnyCancellable>()
 
     func saveOrder(

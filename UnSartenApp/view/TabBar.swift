@@ -13,14 +13,14 @@ struct TabBar: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationView {
+            /*NavigationView {
                 ChatList(chatsService: ChatsService())
             }
                     .tabItem {
                         Image(systemName: "message")
                         Text("Chats")
                     }
-                    .tag(0)
+                    .tag(0)*/
 
             NavigationView {
                 FetchOrders(fetchOrdersService: FetchOrdersService())
@@ -29,7 +29,7 @@ struct TabBar: View {
                         Image(systemName: "magnifyingglass")
                         Text("Ordenes")
                     }
-                    .tag(1)
+                    .tag(0)
 
             NavigationView {
                 NewOrder(newOrderService: NewOrderService(), coreDM: coreDM)
@@ -38,7 +38,7 @@ struct TabBar: View {
                         Image(systemName: "plus.square")
                         Text("Nueva orden")
                     }
-                    .tag(2)
+                    .tag(1)
 
             NavigationView {
                 Profile(userDataService: UserDataService(), coreDM: coreDM)
@@ -47,7 +47,7 @@ struct TabBar: View {
                         Image(systemName: "person")
                         Text("Perfil")
                     }
-                    .tag(3)
+                    .tag(2)
         }
                 .accentColor(.blue)
                 .onAppear() {
