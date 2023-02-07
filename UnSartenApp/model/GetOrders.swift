@@ -38,7 +38,8 @@ struct GODataClass: Codable, Hashable {
 struct GetOrder: Codable, Hashable, Identifiable {
     let id = UUID()
     let userId, orderName: String
-    let budget, persons: Int
+    let persons: Int
+    let budget: Double
     let orderPicture: String?
     let orderStatus, author, date, optionalIngredients: String
 
