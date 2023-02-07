@@ -36,7 +36,6 @@ struct ChatListItem: View {
         }
         
         .onTapGesture {
-            print("SEND TO FUCKING MESSAGE ROOM")
         }
     }
 }
